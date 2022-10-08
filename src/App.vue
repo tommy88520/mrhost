@@ -5,10 +5,8 @@
       <div class="demo-container__side-container">
         <div class="demo-container__side-title" @click="optionStyle = !optionStyle">
           <p>飯店設施</p>
-          <el-icon>
-            <ArrowUp v-if="optionStyle"/>
-            <ArrowDown v-else/>
-            </el-icon>
+          <DownIcon v-if="optionStyle"/>
+          <UpIcon v-else/>
         </div>
         <div class="demo-container__check-box" :class="{'demo-container__box-open': optionStyle}">
           <el-checkbox 
@@ -50,13 +48,17 @@ import { ref, reactive } from 'vue'
 import { roomData, firstOption, topBarOption } from './assets/data.js'
 import PostList from './components/PostList.vue'
 import ScrollTop from './components/ScrollTop.vue'
+import DownIcon from './components/DownIcon.vue'
+import UpIcon from './components/UpIcon.vue'
 import _ from 'lodash'
 
 export default {
   name: 'App',
   components:{
     PostList,
-    ScrollTop
+    ScrollTop,
+    DownIcon,
+    UpIcon
   },
   setup(){
     const barOption = ref('')
@@ -81,12 +83,13 @@ export default {
         }
         return acc
       },[])
+      selectChoice()
     }
     function selectChoice() {
       const action = barOption.value
       switch (action) {
         case 'all': {
-          placeDetail.value = originData
+          placeDetail.value = _.shuffle(placeDetail.value);
           break; 
         }
         case 'asc': {
@@ -120,7 +123,7 @@ export default {
       selectChoice,
       barOption,
       optional,
-      optionStyle
+      optionStyle,
     }
   }
 }

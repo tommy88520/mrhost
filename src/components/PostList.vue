@@ -8,7 +8,7 @@
     <div class="post-list__detail">
         <p>{{ data.name }}</p>
         <div class="post-list__location"> 
-          <el-icon><Location /></el-icon>
+          <LocationIcon />
           <p>{{ data.location }} </p>
         </div>
         <p class="post-list__desc">{{ data.desc }}</p>
@@ -27,10 +27,14 @@
 
 <script>
 import { digits } from '../assets/number.js'
+import LocationIcon from './LocationIcon.vue'
 export default {
   name: 'PostList',
   props: {
     placeDetail: Array
+  },
+  components: { 
+    LocationIcon
   },
   setup(){
     return { digits }
@@ -83,9 +87,6 @@ export default {
     margin-bottom: 10px;
     height: 20px;
     color: #E60013;
-    i { 
-      margin-right: 5px;
-    }
   }
   &__degree {
     width: 24%;

@@ -1,12 +1,17 @@
 <template>
   <div class="scroll-icon" v-scroll-to="options">
-    <el-icon><Top /></el-icon>
+    <UpIcon/>
   </div>
 </template>
 
 <script>
+import UpIcon from './UpIcon.vue'
+
 export default {
   name: 'ScrollTop',
+  components:{
+    UpIcon
+  },
   data () {
     return { 
       options: { element: '#header', easing: 'linear' }
@@ -26,6 +31,8 @@ export default {
   height: 32px;
   cursor: pointer;
   background-color: #fff;
+  display: flex;
+  justify-content: center;
   i { 
     font-size: 30px;
   }
